@@ -10,13 +10,18 @@ public class VRDragHandler : MonoBehaviour
     public OVRHand leftHand;
     public OVRHand rightHand;
     public float sensitivity;
+    public bool swipeMode;
+    public float swipeThreshold;
+    public float swipeCooldown;
 
     private float angle;
     private bool left;
     private float pivot;
+    private float swipeCoolTime;
 
     private void Update()
     {
+        swipeCoolTime = Math.Max(0, swipeCoolTime - Time.deltaTime);
         float yAngle;
         if (!ShouldDrag())
         {
@@ -26,9 +31,17 @@ public class VRDragHandler : MonoBehaviour
         }
 
         yAngle = Quaternion.LookRotation((left ? leftHand : rightHand).transform.position).eulerAngles.y;
-        angle = (angle + (yAngle - pivot) * sensitivity) % 360;
-
-        onDrag?.Invoke(angle);
+        var delta = Mathf.DeltaAngle(pivot, yAngle);
+        angle = (angle + delta) % 360;
+        if (swipeMode)
+        {
+            if (swipeCoolTime <= 0 && Math.Abs(delta * sensitivity) >= swipeThreshold)
+            {
+                swipeCoolTime = swipeCooldown;
+                onDrag?.Invoke(Math.Sign(delta));
+            }
+        }
+        else onDrag?.Invoke(angle);
 
         pivot = yAngle;
     }
