@@ -6,7 +6,7 @@ public class PropertyColorPicker : PropertyUI
 
     private void Start()
     {
-        colorPicker.color = material.GetColor(propertyID);
+        if (material != null) colorPicker.color = material.GetColor(propertyID);
         colorPicker.onColorChange.AddListener(SetColorProperty);
     }
 }

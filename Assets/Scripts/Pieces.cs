@@ -19,7 +19,7 @@ public class Pieces : MonoBehaviour
     private void Start()
     {
         var interval = 360 / pieces.Length;
-        pieces[0].onSelect.Invoke();
+        pieces[0].onSelect?.Invoke();
         for (var i = 0; i < pieces.Length; i++)
         {
             var piece = pieces[i].transform;

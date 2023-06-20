@@ -6,7 +6,7 @@ public class PropertySlider : PropertyUI
 
     private void Start()
     {
-        slider.value = material.GetFloat(propertyID);
+        if (material != null) slider.value = material.GetFloat(propertyID);
         slider.onValueChanged.AddListener(SetFloatProperty);
     }
 }

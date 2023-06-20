@@ -6,7 +6,7 @@ public class PropertyDropDown : PropertyUI
 
     private void Start()
     {
-        dropdown.value = (int)material.GetFloat(propertyID);
+        if (material != null) dropdown.value = (int)material.GetFloat(propertyID);
         dropdown.onValueChanged.AddListener(SetListProperty);
     }
 }

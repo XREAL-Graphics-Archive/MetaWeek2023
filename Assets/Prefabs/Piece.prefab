@@ -52,6 +52,9 @@ MonoBehaviour:
   onDeselect:
     m_PersistentCalls:
       m_Calls: []
+  onClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4654530564758716544
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +119,6 @@ GameObject:
   - component: {fileID: 8955021971661160464}
   - component: {fileID: 8411167308094397673}
   - component: {fileID: 8133496675493563433}
-  - component: {fileID: 139318042269530854}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -189,17 +191,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &139318042269530854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5468763634077572465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b3b3f04ac18184468bedd999e5a6688, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pokeInteractable: {fileID: 0}
-  _buttonBaseTransform: {fileID: 8955021971661160464}
