@@ -1932,7 +1932,8 @@ MonoBehaviour:
   rightHand: {fileID: 1566691775}
   sensitivity: 1
   swipeMode: 1
-  swipeThreshold: 3
+  swipeDeltaThreshold: 1
+  swipeAmountThreshold: 40
   swipeCooldown: 0.5
 --- !u!1 &1043156023
 GameObject:
