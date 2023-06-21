@@ -38,13 +38,15 @@ public class VRDragHandler : MonoBehaviour
         angle = (angle + delta) % 360;
         if (swipeMode)
         {
+            var prevSwipeDelta = swipeDelta;
             if (swipeCoolTime <= 0)
             {
-                swipeDelta |= Math.Abs(delta) >= swipeDeltaThreshold;
-                swipeAmount += delta;
+                swipeDelta = Math.Abs(delta) >= swipeDeltaThreshold;
+                if (prevSwipeDelta == swipeDelta) swipeAmount += delta;
+                else swipeAmount = 0;
             }
-            
-            if (swipeDelta && Math.Abs(swipeAmount) >= swipeAmountThreshold)
+
+            if (Math.Abs(swipeAmount) >= swipeAmountThreshold)
             {
                 swipeCoolTime = swipeCooldown;
                 swipeDelta = false;
