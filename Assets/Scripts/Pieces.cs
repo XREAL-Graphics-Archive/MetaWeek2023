@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pieces : MonoBehaviour
 {
+    public static int UIHovering { get; set; }
+
     public VRDragHandler dragHandler;
     public Piece[] pieces;
     public float radius;
@@ -36,7 +38,7 @@ public class Pieces : MonoBehaviour
 
     private void OnDrag(float value)
     {
-        if (!dragHandler.swipeMode) return;
+        if (!dragHandler.swipeMode || UIHovering > 0) return;
         var prev = selection;
         selection = (selection - (int)value + pieces.Length) % pieces.Length;
         StartCoroutine(RotateCoroutine(prev, selection));

@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PropertyUI : MonoBehaviour
+public class PropertyUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public Material material;
     public string property;
@@ -28,5 +29,25 @@ public class PropertyUI : MonoBehaviour
     {
         if (material == null) return;
         material.SetFloat(propertyID, value);
+    }
+
+    public void OnPointerDown()
+    {
+        Pieces.UIHovering += 1;
+    }
+
+    public void OnPointerUp()
+    {
+        Pieces.UIHovering -= 1;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        OnPointerDown();
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        OnPointerUp();
     }
 }
