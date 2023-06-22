@@ -9,6 +9,8 @@ public class PortalCamera : MonoBehaviour
     private void Awake()
     {
         portalCamera = GetComponent<Camera>();
+        Debug.Log(Camera.main.gameObject.name + ": " + Camera.main.stereoEnabled);
+        Debug.Log(portalCamera.gameObject.name + ": " + portalCamera.stereoEnabled);
     }
 
     void OnEnable()
