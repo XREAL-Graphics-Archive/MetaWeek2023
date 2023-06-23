@@ -378,6 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalMask: {fileID: 289847678}
+  sceneToLoad: {fileID: 102900000, guid: e0e820bd0dd3d44429cb1915ad63b262, type: 3}
 --- !u!1 &289847678
 GameObject:
   m_ObjectHideFlags: 0

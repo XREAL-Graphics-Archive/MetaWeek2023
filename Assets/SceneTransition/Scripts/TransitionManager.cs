@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class TransitionManager : MonoBehaviour
@@ -22,6 +23,7 @@ public class TransitionManager : MonoBehaviour
     #endregion
     
     [SerializeField] private GameObject globalMask;
+    [SerializeField] private SceneAsset sceneToLoad;
     
     private GameObject selectedBall;
     
