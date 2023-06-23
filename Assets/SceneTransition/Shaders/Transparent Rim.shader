@@ -1,24 +1,28 @@
-Shader "Unlit/PortalBall"
+Shader "Unlit/Transparent Rim"
 { 
 	Properties
 	{
-	   _MainTex("Main Texture", 2D) = "white" {}
-	}  
+		[Enum(UnityEngine.Rendering.BlendMode)] _SrcBlend ("Src Blend", Float) = 1
+		[Enum(UnityEngine.Rendering.BlendMode)] _DstBlend ("Dst Blend", Float) = 0
+	}
 
 	SubShader
 	{  	
 		Tags
         {
 		    "RenderPipeline"="UniversalPipeline"
-			"RenderType"="Opaque"          
-			"Queue"="Geometry"		
+			"RenderType"="Transparent"          
+			"Queue"="Transparent"		
         }
-    	Pass
-    	{
-			Name "Universal Forward"
-            Tags {"LightMode" = "UniversalForward"}
-
-       		HLSLPROGRAM
+		Pass{
+			Name "Outline"
+			Tags {"LightMode" = "SRPDefaultUnlit"}
+			
+			Blend [_SrcBlend] [_DstBlend]
+			ZWrite Off
+			Cull Front
+			
+			HLSLPROGRAM
         	#pragma prefer_hlslcc gles
         	#pragma exclude_renderers d3d11_9x
         	#pragma vertex vert
@@ -33,15 +37,15 @@ Shader "Unlit/PortalBall"
 			struct VertexInput
 			{
            		float4 vertex : POSITION;
-           		float2 uv 	  : TEXCOORD0;
+				float3 normal : NORMAL;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct VertexOutput
 			{
 				float4 vertex  	: SV_POSITION;
-				float2 uv      	: TEXCOORD0;
-				// float3 viewDir	: TEXCOORD1;
+				float3 normal : NORMAL;
+				float3 viewDir	: TEXCOORD2;
 				UNITY_VERTEX_OUTPUT_STEREO
       		};
 
@@ -52,19 +56,22 @@ Shader "Unlit/PortalBall"
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
        			
           		o.vertex = TransformObjectToHClip(v.vertex.xyz);
-       			o.uv = v.uv;
-       			// o.viewDir = TransformObjectToWorld(v.vertex).xyz - _WorldSpaceCameraPos;
+       			o.normal = TransformObjectToWorldNormal(v.normal);
+       			o.viewDir = normalize(_WorldSpaceCameraPos - TransformObjectToWorld(v.vertex.xyz).xyz);
           		return o;
         	}	
        		
         	half4 frag(VertexOutput i) : SV_Target
         	{
         		UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
-        		
-				float4 color = _MainTex.Sample(sampler_MainTex, i.uv);
+
+        		float rim = 1 - abs(dot(i.viewDir, i.normal));
+        		rim = pow(rim, 2);
+        		half4 color = half4(1,1,1,1);
+        		color *= rim;
           		return color;
         	}
 			ENDHLSL  
-    	}
+		}
     }
 }
