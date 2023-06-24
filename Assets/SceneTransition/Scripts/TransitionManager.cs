@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,7 +8,7 @@ using UnityEngine.Rendering.Universal;
 
 public class TransitionManager : MonoBehaviour
 {
-    #region Singleton
+    #region SINGLETON
 
     private static TransitionManager _instance;
 
@@ -23,18 +24,7 @@ public class TransitionManager : MonoBehaviour
 
     #endregion
     
-    [SerializeField] private Camera playerCam;
-    private UniversalAdditionalCameraData portalRenderer;
-    private int rendererListLength = 2;
-    private int currentRendererIndex = 0;
-    
-    [SerializeField] private GameObject globalMask;
-    
-    [SerializeField] private SceneAsset sceneToLoad;
-    private Light[] mainLights = new Light[2];
-
-    private PortalBall selectedBall;
-
+    #region CAMERA EVENTS
     void OnEnable()
     {
         RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
@@ -47,18 +37,6 @@ public class TransitionManager : MonoBehaviour
         RenderPipelineManager.beginCameraRendering -= OnEndCameraRendering;
     }
     
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-        if(globalMask != null)
-            DontDestroyOnLoad(globalMask);
-        
-        mainLights[0] = RenderSettings.sun;
-        
-        // cache graphics data
-        portalRenderer = playerCam.transform.GetComponent<UniversalAdditionalCameraData>();
-    }
-
     void OnBeginCameraRendering(ScriptableRenderContext context, Camera cam)
     {
         if (playerCam != cam) return;
@@ -72,12 +50,50 @@ public class TransitionManager : MonoBehaviour
         
         // TODO SWITCH SCENE LIGHTING SETUP
     }
+    #endregion
+    
+    // stencil settings
+    [SerializeField] private GameObject globalMask;
+    [Space]
+    
+    // camera data
+    [SerializeField] private Camera playerCam;
+    private UniversalAdditionalCameraData portalRenderer;
+    private int rendererListLength = 2;
+    private int currentRendererIndex = 0;
+    [Space]
+    
+    // scene references
+    [SerializeField] private SceneAsset lobbyScene;
+    [SerializeField] private SceneAsset sceneToLoad;
+    [SerializeField] private float transitionDuration = 1f;
+    private float timeElapsed = 0f;
+    
+    private Light[] mainLights = new Light[2];
+
+    private PortalBall selectedBall;
+
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+        if(globalMask != null)
+            DontDestroyOnLoad(globalMask);
+        
+        mainLights[0] = RenderSettings.sun;
+        
+        // cache graphics data
+        portalRenderer = playerCam.transform.GetComponent<UniversalAdditionalCameraData>();
+
+        selectedBall = FindObjectOfType<PortalBall>();
+    }
 
     public void SelectSphere(PortalBall sphere)
     {
         selectedBall = sphere;
+        sceneToLoad = sphere.Scene;
     }
 
+    // Get all lights from main & additive scene
     void FetchLights()
     {
         // get main lights
@@ -106,14 +122,39 @@ public class TransitionManager : MonoBehaviour
         portalRenderer.SetRenderer(currentRendererIndex);
     }
     
-    public void LoadSceneAdditive()
+    void LoadSceneAdditive()
     {
         SceneManager.LoadSceneAsync(sceneToLoad.name, LoadSceneMode.Additive);
     }
+
+    void SwitchScene()
+    {
+        StartCoroutine(LerpBall());
+    }
+
+    IEnumerator LerpBall()
+    {
+        timeElapsed = 0;
+        Vector3 startPos = selectedBall.transform.position;
+        
+        while (timeElapsed < transitionDuration)
+        {
+            selectedBall.transform.position = Vector3.Lerp(
+                startPos, 
+                playerCam.transform.position, 
+                timeElapsed/transitionDuration
+            );
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        selectedBall.transform.position = playerCam.transform.position;
+    } 
 
     public void InvokeTransition()
     {
         SwitchRenderer();
         LoadSceneAdditive();
+        SwitchScene();
     }
 }
