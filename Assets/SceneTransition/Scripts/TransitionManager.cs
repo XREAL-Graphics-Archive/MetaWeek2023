@@ -53,9 +53,6 @@ public class TransitionManager : MonoBehaviour
     private PortalBall selectedBall;
     private float timeElapsed = 0f;
 
-    [Header("Lighting Settings")]
-    [SerializeField] private Light mainLight;
-    
     private static TransitionManager _instance;
 
     public static TransitionManager Instance { get; private set; }
