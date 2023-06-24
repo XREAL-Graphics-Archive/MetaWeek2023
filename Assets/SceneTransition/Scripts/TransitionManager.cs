@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.XR;
 
 public class TransitionManager : MonoBehaviour
 {
@@ -51,11 +53,7 @@ public class TransitionManager : MonoBehaviour
         // TODO SWITCH SCENE LIGHTING SETUP
     }
     #endregion
-    
-    // stencil settings
-    [SerializeField] private GameObject globalMask;
-    [Space]
-    
+
     // camera data
     [SerializeField] private Camera playerCam;
     private UniversalAdditionalCameraData portalRenderer;
@@ -69,15 +67,20 @@ public class TransitionManager : MonoBehaviour
     [SerializeField] private float transitionDuration = 1f;
     private float timeElapsed = 0f;
     
+    // ddol
+    [SerializeField] private List<GameObject> gameObjectsToPreserve;
+    [Space]
+    
     private Light[] mainLights = new Light[2];
-
     private PortalBall selectedBall;
 
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        if(globalMask != null)
-            DontDestroyOnLoad(globalMask);
+        foreach (GameObject go in gameObjectsToPreserve)
+        {
+            DontDestroyOnLoad(go);
+        }
         
         mainLights[0] = RenderSettings.sun;
         
@@ -149,6 +152,10 @@ public class TransitionManager : MonoBehaviour
         }
 
         selectedBall.transform.position = playerCam.transform.position;
+        
+        SceneManager.UnloadSceneAsync(lobbyScene.name);
+        SwitchRenderer();
+        selectedBall.gameObject.SetActive(false);
     } 
 
     public void InvokeTransition()
