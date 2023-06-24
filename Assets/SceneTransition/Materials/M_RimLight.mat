@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StencilDiscard
-  m_Shader: {fileID: 4800000, guid: e1d0cf00eaae51d4398b5c63669467c0, type: 3}
+  m_Name: M_RimLight
+  m_Shader: {fileID: 4800000, guid: 0117fac9cd2fead4d8f1ef58cd85d8fe, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -29,6 +29,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _StencilRef: 0
+    - _DstBlend: 6
+    - _SrcBlend: 3
+    - _StencilRef: 1
     m_Colors: []
   m_BuildTextureStacks: []

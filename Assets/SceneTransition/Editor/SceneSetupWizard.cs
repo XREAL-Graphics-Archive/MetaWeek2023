@@ -17,6 +17,7 @@ public class SceneSetupWizard : EditorWindow
     private List<GameObject> objectsToRender = new List<GameObject>();
     private Vector2 lightsScrollPosition;
     private Vector2 objectsScrollPosition;
+    private Vector2 windowScrollPosition;
 
     private void OnEnable()
     {
@@ -39,6 +40,8 @@ public class SceneSetupWizard : EditorWindow
     
     void OnGUI()
     {
+        windowScrollPosition = EditorGUILayout.BeginScrollView(windowScrollPosition);
+        
         if (GUILayout.Button("Fetch Scene Data", GUILayout.Height(20f)))
         {
             GetCurrentScene();
@@ -88,6 +91,8 @@ public class SceneSetupWizard : EditorWindow
             ConfigureRoom();
         }
         EditorGUILayout.EndHorizontal();
+        
+        EditorGUILayout.EndScrollView();
     }
 
     private void ConfigureLobby()

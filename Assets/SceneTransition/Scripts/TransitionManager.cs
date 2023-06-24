@@ -47,10 +47,10 @@ public class TransitionManager : MonoBehaviour
     
     [Header("Transition Settings")]
     [SerializeField] private SceneField lobbyScene;
-    [SerializeField] private SceneField sceneToLoad;
     [SerializeField] private float transitionDuration = 1f;
-    private PortalBall selectedBall;
     private SceneField currentScene;
+    private SceneField sceneToLoad;
+    private PortalBall selectedBall;
     private float timeElapsed = 0f;
 
     [Header("Lighting Settings")]
@@ -96,12 +96,6 @@ public class TransitionManager : MonoBehaviour
     {
         selectedBall = sphere;
         sceneToLoad = sphere.Scene;
-    }
-
-    // Get all lights from main & additive scene
-    void UpdateLightCullingMask()
-    {
-        
     }
 
     private void Update()
@@ -173,7 +167,7 @@ public class TransitionManager : MonoBehaviour
     {
         if (selectedBall == null)
         {
-            Debug.LogWarning("There is no Portal Ball selected. Cannot invoke transition");
+            Debug.LogWarning("There is no Portal Ball selected. Cannot invoke transition.");
             return;
         }
         
