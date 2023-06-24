@@ -10,22 +10,6 @@ using UnityEngine.XR;
 
 public class TransitionManager : MonoBehaviour
 {
-    #region SINGLETON
-
-    private static TransitionManager _instance;
-
-    public static TransitionManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-            Destroy(this);
-        else
-            Instance = this;
-    }
-
-    #endregion
-    
     #region CAMERA EVENTS
     void OnEnable()
     {
@@ -53,7 +37,7 @@ public class TransitionManager : MonoBehaviour
         // TODO SWITCH SCENE LIGHTING SETUP
     }
     #endregion
-    
+
     [Header("XR Rig Data")]
     [SerializeField] private GameObject playerRig;
     [SerializeField] private Camera playerCam;
@@ -66,18 +50,27 @@ public class TransitionManager : MonoBehaviour
     [SerializeField] private SceneField lobbyScene;
     [SerializeField] private SceneField sceneToLoad;
     [SerializeField] private float transitionDuration = 1f;
+    private PortalBall selectedBall;
     private SceneField currentScene;
     private float timeElapsed = 0f;
-    
-    private Light[] mainLights = new Light[2];
-    private PortalBall selectedBall;
 
-    void Start()
+    [Header("Lighting Settings")]
+    [SerializeField] private Light mainLight;
+    
+    private static TransitionManager _instance;
+
+    public static TransitionManager Instance { get; private set; }
+
+    private void Awake()
     {
+        // singleton instantiation
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+        
         // disable player rig before initial setup
         playerRig.SetActive(false);
-        
-        DontDestroyOnLoad(gameObject);
 
         // load lobby scene
         currentScene = lobbyScene;
@@ -85,9 +78,12 @@ public class TransitionManager : MonoBehaviour
         
         // enable rig after loading lobby scene
         playerRig.SetActive(true);
-
-        // mainLights[0] = RenderSettings.sun;
         
+        DontDestroyOnLoad(gameObject);
+    }
+
+    void Start()
+    {
         // cache graphics data
         portalRenderer = playerCam.transform.GetComponent<UniversalAdditionalCameraData>();
 
@@ -104,18 +100,9 @@ public class TransitionManager : MonoBehaviour
     }
 
     // Get all lights from main & additive scene
-    void FetchLights()
+    void UpdateLightCullingMask()
     {
-        // get main lights
-        Light[] sceneLights = FindObjectsOfType<Light>();
-        foreach (Light light in sceneLights)
-        {
-            if (light.type == LightType.Directional && light != RenderSettings.sun)
-            {
-                mainLights[1] = light;
-                break;
-            }
-        }
+        
     }
 
     private void Update()
