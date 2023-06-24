@@ -6,24 +6,17 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class SceneSetupWizard : EditorWindow
 {
-    string myString = "Hello World";
-    bool groupEnabled;
-    bool myBool = true;
-    float myFloat = 1.23f;
-
-    private SceneAsset oldSceneAsset;
     private SceneAsset selectedSceneAsset;
-    private bool showLights;
-    private bool showGameObjects;
-    private Vector2 lightsScrollPosition;
-    private Vector2 objectsScrollPosition;
-
+    
     private List<GameObject> lightList = new List<GameObject>();
     private List<GameObject> objectsToRender = new List<GameObject>();
+    private Vector2 lightsScrollPosition;
+    private Vector2 objectsScrollPosition;
 
     private void OnEnable()
     {
@@ -34,17 +27,16 @@ public class SceneSetupWizard : EditorWindow
     {
         EditorSceneManager.sceneOpened -= OnSceneChange;
     }
-
-    // Add menu item named "My Window" to the Window menu
+    
     [MenuItem("Window/Scene Setup Wizard")]
     public static void ShowWindow()
     {
         // Show existing window instance. If one doesn't exist, make one.
         SceneSetupWizard window = GetWindow<SceneSetupWizard>();
-        window.minSize = new Vector2(625f, 700f);
-        window.maxSize = new Vector2(800f, 1200f);
+        window.minSize = new Vector2(625f, 640f);
+        window.maxSize = new Vector2(625f, 640f);
     }
-
+    
     void OnGUI()
     {
         if (GUILayout.Button("Fetch Scene Data", GUILayout.Height(20f)))
@@ -87,13 +79,49 @@ public class SceneSetupWizard : EditorWindow
         if (GUILayout.Button("Configure as Lobby", GUILayout.Height(20f)))
         {
             Debug.Log("Configured Scene as Lobby");
+            ConfigureLobby();
         }
 
         if (GUILayout.Button("Configure as Room", GUILayout.Height(20f)))
         {
             Debug.Log("Configured Scene as Room");
+            ConfigureRoom();
         }
         EditorGUILayout.EndHorizontal();
+    }
+
+    private void ConfigureLobby()
+    {
+        foreach (GameObject obj in lightList)
+        {
+            UniversalAdditionalLightData light = obj.GetComponent<Light>().GetUniversalAdditionalLightData();
+            light.renderingLayers = 1 << 8;
+        }
+        
+        foreach (GameObject obj in objectsToRender)
+        {
+            MeshRenderer mr = obj.GetComponent<MeshRenderer>();
+            mr.renderingLayerMask = 1 << 8;
+        }
+
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+    }
+
+    private void ConfigureRoom()
+    {
+        foreach (GameObject obj in lightList)
+        {
+            UniversalAdditionalLightData light = obj.GetComponent<Light>().GetUniversalAdditionalLightData();
+            light.renderingLayers = 1 << 9;
+        }
+        
+        foreach (GameObject obj in objectsToRender)
+        {
+            MeshRenderer mr = obj.GetComponent<MeshRenderer>();
+            mr.renderingLayerMask = 1 << 9;
+        }
+        
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
     }
 
     private void OnSceneChange(Scene scene, OpenSceneMode mode)

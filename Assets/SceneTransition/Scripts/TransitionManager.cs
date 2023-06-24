@@ -42,7 +42,6 @@ public class TransitionManager : MonoBehaviour
     [SerializeField] private GameObject playerRig;
     [SerializeField] private Camera playerCam;
     private UniversalAdditionalCameraData portalRenderer;
-    private int rendererListLength = 2;
     private int currentRendererIndex = 0;
     [Space]
     
