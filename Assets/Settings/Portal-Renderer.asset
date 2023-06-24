@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: StencilMask
+  m_Name: StencilLobby
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: StencilMask
-    Event: 450
+    passTag: StencilLobby
+    Event: 300
     filterSettings:
       RenderQueueType: 0
       LayerMask:
@@ -32,7 +32,7 @@ MonoBehaviour:
     enableWrite: 1
     stencilSettings:
       overrideStencilState: 1
-      stencilReference: 1
+      stencilReference: 0
       stencilCompareFunction: 3
       passOperation: 0
       failOperation: 0
@@ -52,12 +52,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: Default
+  m_Name: StencilDestination
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: Default
-    Event: 450
+    passTag: StencilDestination
+    Event: 300
     filterSettings:
       RenderQueueType: 0
       LayerMask:
