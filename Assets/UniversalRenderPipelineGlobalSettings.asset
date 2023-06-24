@@ -23,7 +23,7 @@ MonoBehaviour:
   - Light Layer 6
   - Light Layer 7
   - Lobby
-  - Destination
+  - Room
   m_ValidRenderingLayers: 1023
   lightLayerName0: Light Layer default
   lightLayerName1: Light Layer 1
