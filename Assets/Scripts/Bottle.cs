@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Bottle : MonoBehaviour
 {
-    public Rigidbody rigidbody;
-    public Collider collider;
+    public new Rigidbody rigidbody;
+    public new Collider collider;
 
     public float respawnY;
     public Vector3 respawnPosition;

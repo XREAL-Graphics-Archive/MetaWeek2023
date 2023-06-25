@@ -6,7 +6,7 @@ public class Pieces : MonoBehaviour
 {
     public static int UIHovering { get; set; }
 
-    public VRDragHandler dragHandler;
+    public VRDragAngleHandler dragAngleHandler;
     public Piece[] pieces;
     public float radius;
     public float selectRadius;
@@ -35,14 +35,14 @@ public class Pieces : MonoBehaviour
             piece.localScale = new Vector3(scale, scale, scale);
         }
 
-        dragHandler.onDrag += OnDrag;
+        dragAngleHandler.onDragAngle += OnDragAngle;
     }
 
-    private void OnDrag(float value)
+    private void OnDragAngle(Vector2 value)
     {
-        if (!dragHandler.swipeMode || UIHovering > 0) return;
+        if (!dragAngleHandler.swipeMode || UIHovering > 0) return;
         var prev = selection;
-        selection = (selection - (int)value + pieces.Length) % pieces.Length;
+        selection = (selection - (int)value.y + pieces.Length) % pieces.Length;
         StartCoroutine(RotateCoroutine(prev, selection));
     }
 
@@ -54,7 +54,7 @@ public class Pieces : MonoBehaviour
         var nextAngle = -interval * next;
         var first = true;
         var elapsed = 0f;
-        var threshold = dragHandler.swipeCooldown * 0.9f;
+        var threshold = dragAngleHandler.swipeCooldown * 0.9f;
         while (elapsed <= threshold)
         {
             yield return null;

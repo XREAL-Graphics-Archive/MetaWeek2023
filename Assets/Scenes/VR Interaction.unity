@@ -276,7 +276,7 @@ PrefabInstance:
     - target: {fileID: 820993192947038813, guid: 32913659b18c76b4899bfd4a1928b605,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.142
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 820993192947038813, guid: 32913659b18c76b4899bfd4a1928b605,
         type: 3}
@@ -886,7 +886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cf3e2f13628d14cbd0c78dc333ab97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragHandler: {fileID: 1029439906}
+  dragAngleHandler: {fileID: 1029439906}
   pieces:
   - {fileID: 523626690}
   - {fileID: 2045563248}
@@ -913,7 +913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49d33aa3b8b461893f17617a7de1312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragButton: 1
+  dragButton: 8192
   dragPinch: 1
   leftHand: {fileID: 1349007339}
   rightHand: {fileID: 1566691775}
