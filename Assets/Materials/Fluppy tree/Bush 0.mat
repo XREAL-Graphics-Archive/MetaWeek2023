@@ -38,7 +38,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _LeafTexture:
-        m_Texture: {fileID: 2800000, guid: 5bfbe91e438ec5e4fa230a408bee04f0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 32842792e215ab94ea5c28f0a588df1c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _leafTexture:

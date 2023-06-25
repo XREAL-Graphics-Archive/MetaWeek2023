@@ -14,7 +14,7 @@ namespace OculusSampleFramework
 {
     public class CowController : MonoBehaviour
     {
-        [SerializeField] private Animation _cowAnimation = null;
+        [SerializeField] private UnityEngine.Animation _cowAnimation = null;
         [SerializeField] private AudioSource _mooCowAudioSource = null;
 
         private void Start()
