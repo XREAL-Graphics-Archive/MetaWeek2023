@@ -88,13 +88,6 @@ public class TransitionManager : MonoBehaviour
         SelectBall(selectedBall);
     }
 
-    // set currently selected portal ball
-    public void SelectBall(PortalBall sphere)
-    {
-        selectedBall = sphere;
-        sceneToLoad = sphere.Scene;
-    }
-
     private void Update()
     {
         // (REMOVE AFTER SETUP) convenient method to test transition
@@ -159,7 +152,20 @@ public class TransitionManager : MonoBehaviour
         SwitchRenderer();
         selectedBall.gameObject.SetActive(false);
     } 
+    
+    /// <summary>
+    /// Set currently selected portal ball.
+    /// </summary>
+    /// <param name="sphere"></param>
+    public void SelectBall(PortalBall sphere)
+    {
+        selectedBall = sphere;
+        sceneToLoad = sphere.Scene;
+    }
 
+    /// <summary>
+    /// Invoke transition after selecting ball. Must be called after SelectBall()
+    /// </summary>
     public void InvokeTransition()
     {
         if (selectedBall == null)
