@@ -139,79 +139,6 @@ MonoBehaviour:
   MaxWobble: 3
   WobbleSpeed: 1
   Recovery: 1
---- !u!1001 &594601746
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7311081855372607653, guid: e332ba826fd82b64c9ab233cfd931c48,
-        type: 3}
-      propertyPath: m_Name
-      value: OVRCameraRig
-      objectReference: {fileID: 0}
-    - target: {fileID: 8244901578399145319, guid: e332ba826fd82b64c9ab233cfd931c48,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8244901578399145319, guid: e332ba826fd82b64c9ab233cfd931c48,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8244901578399145319, guid: e332ba826fd82b64c9ab233cfd931c48,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 8244901578399145319, guid: e332ba826fd82b64c9ab233cfd931c48,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8244901578399145319, guid: e332ba826fd82b64c9ab233cfd931c48,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8244901578399145319, guid: e332ba826fd82b64c9ab233cfd931c48,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8244901578399145319, guid: e332ba826fd82b64c9ab233cfd931c48,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8244901578399145319, guid: e332ba826fd82b64c9ab233cfd931c48,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8244901578399145319, guid: e332ba826fd82b64c9ab233cfd931c48,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8244901578399145319, guid: e332ba826fd82b64c9ab233cfd931c48,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8244901578399145319, guid: e332ba826fd82b64c9ab233cfd931c48,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e332ba826fd82b64c9ab233cfd931c48, type: 3}
 --- !u!54 &798299869
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -372,7 +299,7 @@ MonoBehaviour:
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
   m_LightLayerMask: 1
-  m_RenderingLayers: 1
+  m_RenderingLayers: 512
   m_CustomShadowLayers: 0
   m_ShadowLayerMask: 1
   m_ShadowRenderingLayers: 1
@@ -556,7 +483,7 @@ Transform:
   - {fileID: 7754517757968934672}
   - {fileID: 5952537247794693720}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!1 &608550895229413375
 GameObject:
@@ -570,7 +497,7 @@ GameObject:
   - component: {fileID: 3807065101722168222}
   - component: {fileID: 7555485618565375709}
   - component: {fileID: 351497293}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Liquid_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,7 +516,7 @@ GameObject:
   - component: {fileID: 3605451226658404942}
   - component: {fileID: 3156186508674054548}
   - component: {fileID: 1475706030}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,7 +556,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 512
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 10b36673aaa42bc499c1c1a025ad8d4a, type: 2}
@@ -694,7 +621,7 @@ GameObject:
   - component: {fileID: 8753108670656288947}
   - component: {fileID: 8753108670656288949}
   - component: {fileID: 8753108670656288951}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bottle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +645,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 512
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 10b36673aaa42bc499c1c1a025ad8d4a, type: 2}
@@ -760,7 +687,7 @@ GameObject:
   - component: {fileID: 5618340038136357905}
   - component: {fileID: 5618340038136357907}
   - component: {fileID: 5618340038136357909}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bottle_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -807,7 +734,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 512
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a384b583426023d4da68d3f25e868451, type: 2}
@@ -844,7 +771,7 @@ GameObject:
   - component: {fileID: 202238948297102761}
   - component: {fileID: 3686468522844322865}
   - component: {fileID: 2047957708}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Liquid_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -876,7 +803,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 512
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 8cf0484e57509a948adb947f07c749ac, type: 2}
@@ -920,7 +847,7 @@ GameObject:
   - component: {fileID: 2018298187500101605}
   - component: {fileID: 6408139998597418479}
   - component: {fileID: 8127944080124275730}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plug_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -944,7 +871,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 512
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a29dc5e705e2f4a429ca2000cb221c43, type: 2}
@@ -1002,7 +929,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 512
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9b7ff004df7bc8440a0d3c6fb0d231c0, type: 2}
@@ -1237,7 +1164,7 @@ GameObject:
   - component: {fileID: 4765427621243857375}
   - component: {fileID: 1972318243528881384}
   - component: {fileID: 3833859948224995002}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plug_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1255,7 +1182,7 @@ GameObject:
   - component: {fileID: 4893982215807329805}
   - component: {fileID: 8518653440998135058}
   - component: {fileID: 7424571605584526613}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plug_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1279,7 +1206,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 512
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a29dc5e705e2f4a429ca2000cb221c43, type: 2}
@@ -1321,7 +1248,7 @@ GameObject:
   - component: {fileID: 7754517757968934673}
   - component: {fileID: 7754517757968934675}
   - component: {fileID: 7754517757968934677}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bottle_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1345,7 +1272,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 512
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 283646eb492113547b74d81fa70f854c, type: 2}
@@ -1512,7 +1439,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 512
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a29dc5e705e2f4a429ca2000cb221c43, type: 2}
@@ -1562,7 +1489,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 512
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 10b36673aaa42bc499c1c1a025ad8d4a, type: 2}
@@ -1690,7 +1617,7 @@ GameObject:
   - component: {fileID: 4217703959544637637}
   - component: {fileID: 4395473556775484900}
   - component: {fileID: 1756744892}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Liquid_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

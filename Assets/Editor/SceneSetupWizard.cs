@@ -105,6 +105,7 @@ public class SceneSetupWizard : EditorWindow
         
         foreach (GameObject obj in objectsToRender)
         {
+            obj.layer = 6;
             MeshRenderer mr = obj.GetComponent<MeshRenderer>();
             mr.renderingLayerMask = 1 << 8;
         }
@@ -122,6 +123,7 @@ public class SceneSetupWizard : EditorWindow
         
         foreach (GameObject obj in objectsToRender)
         {
+            obj.layer = 7;
             MeshRenderer mr = obj.GetComponent<MeshRenderer>();
             mr.renderingLayerMask = 1 << 9;
         }
