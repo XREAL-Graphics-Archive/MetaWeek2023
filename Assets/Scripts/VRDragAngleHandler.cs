@@ -11,7 +11,7 @@ public class VRDragAngleHandler : VRDragHandler
     public float swipeCooldown;
 
     private Vector2 pivot;
-    private float swipeCoolTime;
+    public float swipeCoolTime { get; private set; }
     private bool swipeDelta;
     private float swipeAmount;
 

@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Pieces : MonoBehaviour
 {
     public static int UIHovering { get; set; }
 
     public VRDragAngleHandler dragAngleHandler;
+    public VRInputHandler inputHandler;
     public Piece[] pieces;
     public float radius;
     public float selectRadius;
@@ -36,6 +38,15 @@ public class Pieces : MonoBehaviour
         }
 
         dragAngleHandler.onDragAngle += OnDragAngle;
+    }
+
+    private void Update()
+    {
+        var piece = pieces[selection];
+        if (dragAngleHandler.swipeCoolTime > 0 || !TransitionManager.Instance.IsReady || piece.portal == null ||
+            inputHandler == null || !inputHandler.GetInput()) return;
+        TransitionManager.Instance.SelectBall(piece.portal);
+        TransitionManager.Instance.InvokeTransition();
     }
 
     private void OnDragAngle(Vector2 value)
