@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 5795581011887566441}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1387887822254136897
 MeshFilter:
@@ -100,6 +100,7 @@ MonoBehaviour:
   sceneToLoad:
     _sceneAsset: {fileID: 0}
     _sceneName: 
+  globalMask: {fileID: 2100000, guid: 25209b492b2a9dc42a6544fbb39a2838, type: 2}
 --- !u!1 &8844617332579872129
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +162,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e72c46550bb7ee41b5d751310fed3c1, type: 2}
+  - {fileID: 2100000, guid: e015436edf875664cad9f3eb97c70dc6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

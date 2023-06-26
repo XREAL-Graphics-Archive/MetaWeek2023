@@ -46,6 +46,7 @@ public class TransitionManager : MonoBehaviour
     [Space]
     
     [Header("Transition Settings")]
+    [SerializeField] private MeshRenderer globalMask;
     [SerializeField] private SceneField lobbyScene;
     [SerializeField] private float transitionDuration = 1f;
     private SceneField currentScene;
@@ -97,6 +98,12 @@ public class TransitionManager : MonoBehaviour
         {
             InvokeTransition();
         }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            selectedBall = FindObjectOfType<PortalBall>();
+            SelectBall(selectedBall);
+        }
     }
 
     void SwitchRenderer()
@@ -124,7 +131,7 @@ public class TransitionManager : MonoBehaviour
         {
             rootObject.SetActive(false);
         }
-        
+
         // unload scene
         SceneManager.UnloadSceneAsync(scene);
     }
@@ -153,9 +160,13 @@ public class TransitionManager : MonoBehaviour
         // unload current scene and switch renderer
         UnloadSceneAdditive(currentScene);
         SwitchRenderer();
-        selectedBall.gameObject.SetActive(false);
+
+        // switch global mask
+        globalMask.sharedMaterial = selectedBall.GlobalMask;
         IsReady = true;
-    } 
+
+        yield return 0;
+    }
     
     /// <summary>
     /// Set currently selected portal ball.
@@ -164,6 +175,8 @@ public class TransitionManager : MonoBehaviour
     public void SelectBall(PortalBall sphere)
     {
         selectedBall = sphere;
+        if(sceneToLoad.Name.Length != 0 && sceneToLoad != null)
+            currentScene = sceneToLoad;
         sceneToLoad = sphere.Scene;
     }
 
