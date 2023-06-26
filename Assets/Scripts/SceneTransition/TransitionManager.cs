@@ -46,6 +46,7 @@ public class TransitionManager : MonoBehaviour
     [Space]
     
     [Header("Transition Settings")]
+    [SerializeField] private MeshRenderer globalMask;
     [SerializeField] private SceneField lobbyScene;
     [SerializeField] private float transitionDuration = 1f;
     private SceneField currentScene;
@@ -153,7 +154,9 @@ public class TransitionManager : MonoBehaviour
         // unload current scene and switch renderer
         UnloadSceneAdditive(currentScene);
         SwitchRenderer();
-        selectedBall.gameObject.SetActive(false);
+        
+        // switch global mask
+        globalMask.sharedMaterial = selectedBall.GlobalMask;
         IsReady = true;
     } 
     

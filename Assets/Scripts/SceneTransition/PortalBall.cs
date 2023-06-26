@@ -7,4 +7,7 @@ public class PortalBall : MonoBehaviour
 {
     [SerializeField] private SceneField sceneToLoad;
     public SceneField Scene => sceneToLoad;
+
+    [SerializeField] private Material globalMask;
+    public Material GlobalMask => globalMask;
 }
