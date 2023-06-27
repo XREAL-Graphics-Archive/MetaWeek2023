@@ -7,10 +7,7 @@ public class Piece : MonoBehaviour
 {
     public UnityEvent onSelect;
     public UnityEvent onDeselect;
-    public UnityEvent onClicked;
 
-    public VRInputHandler inputHandler;
-    public bool isLobbyPortal;
     public PortalBall portal;
 
     public MeshRenderer[] toPlayRenderers;
@@ -27,14 +24,6 @@ public class Piece : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (!isLobbyPortal || !TransitionManager.Instance.IsReady || portal == null || inputHandler == null ||
-            !inputHandler.GetInput()) return;
-        TransitionManager.Instance.SelectBall(portal);
-        TransitionManager.Instance.InvokeTransition();
-    }
-
     public void PlayMaterials()
     {
         for (var i = 0; i < toPlayMaterials.Count; i++) toPlayMaterials[i].SetInt(playProperty, 1);
@@ -43,5 +32,12 @@ public class Piece : MonoBehaviour
     public void StopMaterials()
     {
         for (var i = 0; i < toPlayMaterials.Count; i++) toPlayMaterials[i].SetInt(playProperty, 0);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (portal == null) return;
+        TransitionManager.Instance.SelectBall(portal);
+        TransitionManager.Instance.InvokeTransition();
     }
 }

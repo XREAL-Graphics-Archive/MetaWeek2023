@@ -260,6 +260,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6497488328972249954, guid: ddeece677145a644b9e4a2c8b9f70a46,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 6518953950501622175, guid: ddeece677145a644b9e4a2c8b9f70a46,
         type: 3}
       propertyPath: m_RenderingLayerMask
@@ -269,6 +274,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Piece Lobby Portal
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788717022549592704, guid: ddeece677145a644b9e4a2c8b9f70a46,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8788717022549592705, guid: ddeece677145a644b9e4a2c8b9f70a46,
         type: 3}
@@ -1086,7 +1096,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 1730901207}
-  collider: {fileID: 1730901208}
   respawnY: 0
   respawnPosition: {x: 0.3535, y: 1.6896446, z: 0.3535}
   respawnRotation: {x: 0, y: -0.7033839, z: -0, w: 0.7108102}
@@ -1361,7 +1370,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 798299869}
-  collider: {fileID: 798299870}
   respawnY: 0
   respawnPosition: {x: 0.5087451, y: 1.6487136, z: 0.1982549}
   respawnRotation: {x: 0, y: -0.38268343, z: -0, w: 0.92387956}
@@ -1561,7 +1569,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 1015519538}
-  collider: {fileID: 1015519539}
   respawnY: 0
   respawnPosition: {x: 0.18415569, y: 1.654, z: 0.5228443}
   respawnRotation: {x: 0, y: -0.38268343, z: -0, w: 0.92387956}

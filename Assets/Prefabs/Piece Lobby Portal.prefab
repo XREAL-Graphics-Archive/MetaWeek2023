@@ -20,6 +20,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5566389107156118583, guid: 2a2637c5a3cf44c4b9147447313de01f,
         type: 3}
+      propertyPath: globalMask
+      value: 
+      objectReference: {fileID: 2100000, guid: 397c96bd955301448bc5f6eb61e16fc2, type: 2}
+    - target: {fileID: 5566389107156118583, guid: 2a2637c5a3cf44c4b9147447313de01f,
+        type: 3}
       propertyPath: sceneToLoad._sceneName
       value: Gallery
       objectReference: {fileID: 0}

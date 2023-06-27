@@ -48,7 +48,7 @@ Material:
     m_Floats:
     - _Iinflate: 3.12
     - _Inflate: 0
-    - _Play: 1
+    - _Play: 0
     - _QuadScale: 2.24
     - _QueueControl: 0
     - _QueueOffset: 0
