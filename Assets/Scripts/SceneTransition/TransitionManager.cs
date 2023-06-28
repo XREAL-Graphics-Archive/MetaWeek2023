@@ -32,16 +32,18 @@ public class TransitionManager : MonoBehaviour
 
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
+        sceneLoads -= 1;
         Debug.Log("[TransitionManager] Loaded " + scene.name);
     }
 
     void OnSceneUnload(Scene scene)
     {
+        sceneLoads -= 1;
         Debug.Log("[TransitionManager] Unloaded " + scene.name);
     }
-    
+
     #endregion
-    
+
     [Header("XR Rig Data")] [SerializeField]
     private GameObject playerRig;
 
@@ -85,7 +87,7 @@ public class TransitionManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
-    
+
     void OnEnable()
     {
         RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
@@ -139,7 +141,7 @@ public class TransitionManager : MonoBehaviour
         if (currentRendererIndex == 1)
         {
             sceneLoads += 1;
-            SceneManager.LoadSceneAsync(sceneToLoad.Name, LoadSceneMode.Additive).completed += _ => sceneLoads -= 1;
+            SceneManager.LoadSceneAsync(sceneToLoad.Name, LoadSceneMode.Additive);
         }
     }
 
@@ -158,7 +160,7 @@ public class TransitionManager : MonoBehaviour
 
         // unload scene
         sceneLoads += 1;
-        SceneManager.UnloadSceneAsync(scene).completed += _ => sceneLoads -= 1;
+        SceneManager.UnloadSceneAsync(scene);
         return true;
     }
 
