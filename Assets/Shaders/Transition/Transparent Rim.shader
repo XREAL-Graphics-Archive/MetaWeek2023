@@ -20,6 +20,7 @@ Shader "Unlit/Transparent Rim"
 			
 			Blend [_SrcBlend] [_DstBlend]
 			ZWrite Off
+			ZTest Off
 			Cull Front
 			
 			HLSLPROGRAM

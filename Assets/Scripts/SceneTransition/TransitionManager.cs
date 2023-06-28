@@ -175,7 +175,7 @@ public class TransitionManager : MonoBehaviour
     public void SelectBall(PortalBall sphere)
     {
         selectedBall = sphere;
-        if(sceneToLoad.Name.Length != 0 && sceneToLoad != null)
+        if(sceneToLoad != null && sceneToLoad.Name.Length != 0)
             currentScene = sceneToLoad;
         sceneToLoad = sphere.Scene;
     }

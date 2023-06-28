@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 7e5ebffdfe32ae349b4684e0d0d96c47, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.6419349, g: 0.71228695, b: 0.86850756, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -621,15 +621,9 @@ MonoBehaviour:
   playerCam: {fileID: 1381762102}
   globalMask: {fileID: 307082782}
   lobbyScene:
-    _sceneAsset: {fileID: 102900000, guid: 2c31b4bae1f48394e82e85e3593cb0f2, type: 3}
-    _sceneName: Transition_Lobby
+    _sceneAsset: {fileID: 102900000, guid: b32e82b0fc0334732a0e79c0b19b4aaa, type: 3}
+    _sceneName: SMW_Graphics
   transitionDuration: 1
-  currentScene:
-    _sceneAsset: {fileID: 0}
-    _sceneName: 
-  sceneToLoad:
-    _sceneAsset: {fileID: 0}
-    _sceneName: 
 --- !u!1001 &1046599880
 PrefabInstance:
   m_ObjectHideFlags: 0
