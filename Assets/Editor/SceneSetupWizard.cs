@@ -149,7 +149,7 @@ public class SceneSetupWizard : EditorWindow
     private void GetLights()
     {
         lightList.Clear();
-        foreach (Light light in FindObjectsOfType<Light>())
+        foreach (Light light in FindObjectsOfType<Light>(true))
         {
             lightList.Add(light.gameObject);
         }
@@ -175,7 +175,7 @@ public class SceneSetupWizard : EditorWindow
     private void GetObjectsToRender()
     {
         objectsToRender.Clear();
-        foreach (MeshRenderer mr in FindObjectsOfType<MeshRenderer>())
+        foreach (MeshRenderer mr in FindObjectsOfType<MeshRenderer>(true))
         {
             objectsToRender.Add(mr.gameObject);
         }
