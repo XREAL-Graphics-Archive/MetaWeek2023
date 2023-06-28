@@ -5,14 +5,11 @@ public class BlackHoleCamera : MonoBehaviour
 {
     [Header("Settings")] [SerializeField] private Material blackHoleMaterial;
     [SerializeField] private Transform target;
-    [SerializeField] private Vector3 playerInitialPosition;
-    [SerializeField] private Vector3 screenOffset;
-    [SerializeField] private Quaternion screenRot;
     [SerializeField] private Transform screen;
     [SerializeField] private Transform lobbyPortal;
     [SerializeField] private VRDragVectorHandler dragVectorHandler;
     [SerializeField] private new Camera camera;
-
+    
     private Transform player;
 
     private static int positionId = Shader.PropertyToID("_Position");
@@ -28,12 +25,10 @@ public class BlackHoleCamera : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("OVRCameraRig").transform;
-        player.position = playerInitialPosition;
+        player.position = new Vector3(0, 0, -10);
         var eye = GameObject.Find("CenterEyeAnchor").transform;
         transform.SetParent(eye);
-        transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         screen.SetParent(eye);
-        screen.SetLocalPositionAndRotation(screenOffset, screenRot);
 
         dragVectorHandler.onDragVector += OnDragVector;
     }
@@ -41,14 +36,6 @@ public class BlackHoleCamera : MonoBehaviour
     private void OnDragVector(Vector3 drag)
     {
         target.position += drag;
-    }
-
-    private void Update()
-    {
-        if (lobbyPortal != null) return;
-        player.position = new Vector3(0, 1.75f, 0);
-        Destroy(screen.gameObject);
-        Destroy(gameObject);
     }
 
     private void LateUpdate()
@@ -59,5 +46,10 @@ public class BlackHoleCamera : MonoBehaviour
         blackHoleMaterial.SetVector(positionId, camera.WorldToViewportPoint(targetPosition));
         blackHoleMaterial.SetFloat(distanceId,
             (Vector3.Dot(thisToTarget, player.forward) > 0 ? 1 : -1) * thisToTarget.magnitude);
+    }
+
+    private void OnDestroy()
+    {
+        player.position = new Vector3(0, 1.75f, 0);
     }
 }

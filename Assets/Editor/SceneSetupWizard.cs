@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 public class SceneSetupWizard : EditorWindow
 {
     private SceneAsset selectedSceneAsset;
-
+    
     private List<GameObject> lightList = new List<GameObject>();
     private List<GameObject> objectsToRender = new List<GameObject>();
     private Vector2 lightsScrollPosition;
@@ -28,7 +28,7 @@ public class SceneSetupWizard : EditorWindow
     {
         EditorSceneManager.sceneOpened -= OnSceneChange;
     }
-
+    
     [MenuItem("Window/Scene Setup Wizard")]
     public static void ShowWindow()
     {
@@ -37,20 +37,20 @@ public class SceneSetupWizard : EditorWindow
         window.minSize = new Vector2(625f, 640f);
         window.maxSize = new Vector2(625f, 640f);
     }
-
+    
     void OnGUI()
     {
         windowScrollPosition = EditorGUILayout.BeginScrollView(windowScrollPosition);
-
+        
         if (GUILayout.Button("Fetch Scene Data", GUILayout.Height(20f)))
         {
             GetCurrentScene();
             GetLights();
             GetObjectsToRender();
         }
-
+        
         GUILayout.Space(10f);
-
+        
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.PrefixLabel("Scene Asset", EditorStyles.boldLabel, EditorStyles.boldLabel);
         EditorGUI.BeginDisabledGroup(true);
@@ -59,9 +59,9 @@ public class SceneSetupWizard : EditorWindow
         EditorGUILayout.EndHorizontal();
 
         GUILayout.Space(10f);
-
+        
         EditorGUILayout.BeginHorizontal();
-
+        
         // Lights List
         EditorGUILayout.BeginVertical();
         EditorGUILayout.LabelField("Lights", EditorStyles.boldLabel);
@@ -73,11 +73,11 @@ public class SceneSetupWizard : EditorWindow
         EditorGUILayout.LabelField("Objects to Render", EditorStyles.boldLabel);
         ShowObjectsToRender();
         EditorGUILayout.EndVertical();
-
+        
         EditorGUILayout.EndHorizontal();
-
+        
         GUILayout.Space(10f);
-
+        
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Configure as Lobby", GUILayout.Height(20f)))
         {
@@ -90,9 +90,8 @@ public class SceneSetupWizard : EditorWindow
             Debug.Log("Configured Scene as Room");
             ConfigureRoom();
         }
-
         EditorGUILayout.EndHorizontal();
-
+        
         EditorGUILayout.EndScrollView();
     }
 
@@ -103,7 +102,7 @@ public class SceneSetupWizard : EditorWindow
             UniversalAdditionalLightData light = obj.GetComponent<Light>().GetUniversalAdditionalLightData();
             light.renderingLayers = 1 << 8;
         }
-
+        
         foreach (GameObject obj in objectsToRender)
         {
             obj.layer = 6;
@@ -121,14 +120,14 @@ public class SceneSetupWizard : EditorWindow
             UniversalAdditionalLightData light = obj.GetComponent<Light>().GetUniversalAdditionalLightData();
             light.renderingLayers = 1 << 9;
         }
-
+        
         foreach (GameObject obj in objectsToRender)
         {
             obj.layer = 7;
             MeshRenderer mr = obj.GetComponent<MeshRenderer>();
             mr.renderingLayerMask = 1 << 9;
         }
-
+        
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
     }
 
@@ -159,7 +158,7 @@ public class SceneSetupWizard : EditorWindow
     {
         EditorGUILayout.BeginVertical(GUI.skin.box);
         lightsScrollPosition = EditorGUILayout.BeginScrollView(
-            lightsScrollPosition,
+            lightsScrollPosition, 
             GUILayout.Width(300f),
             GUILayout.Height(500f));
 
@@ -180,7 +179,7 @@ public class SceneSetupWizard : EditorWindow
             objectsToRender.Add(mr.gameObject);
         }
     }
-
+    
     private void ShowObjectsToRender()
     {
         EditorGUILayout.BeginVertical(GUI.skin.box);
@@ -191,7 +190,6 @@ public class SceneSetupWizard : EditorWindow
 
         foreach (GameObject obj in objectsToRender)
         {
-            if (obj == null) return;
             EditorGUILayout.LabelField(obj.gameObject.name);
         }
 
