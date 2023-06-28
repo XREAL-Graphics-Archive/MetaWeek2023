@@ -12,18 +12,6 @@ public class TransitionManager : MonoBehaviour
 {
     #region CAMERA EVENTS
 
-    void OnEnable()
-    {
-        RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
-        RenderPipelineManager.beginCameraRendering += OnEndCameraRendering;
-    }
-
-    private void OnDisable()
-    {
-        RenderPipelineManager.beginCameraRendering -= OnBeginCameraRendering;
-        RenderPipelineManager.beginCameraRendering -= OnEndCameraRendering;
-    }
-
     void OnBeginCameraRendering(ScriptableRenderContext context, Camera cam)
     {
         if (playerCam != cam) return;
@@ -40,6 +28,20 @@ public class TransitionManager : MonoBehaviour
 
     #endregion
 
+    #region SCENEMANAGER EVENTS
+
+    void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("[TransitionManager] Loaded " + scene.name);
+    }
+
+    void OnSceneUnload(Scene scene)
+    {
+        Debug.Log("[TransitionManager] Unloaded " + scene.name);
+    }
+    
+    #endregion
+    
     [Header("XR Rig Data")] [SerializeField]
     private GameObject playerRig;
 
@@ -82,6 +84,22 @@ public class TransitionManager : MonoBehaviour
         playerRig.SetActive(true);
 
         DontDestroyOnLoad(gameObject);
+    }
+    
+    void OnEnable()
+    {
+        RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
+        RenderPipelineManager.beginCameraRendering += OnEndCameraRendering;
+        SceneManager.sceneLoaded += OnSceneLoad;
+        SceneManager.sceneUnloaded += OnSceneUnload;
+    }
+
+    private void OnDisable()
+    {
+        RenderPipelineManager.beginCameraRendering -= OnBeginCameraRendering;
+        RenderPipelineManager.beginCameraRendering -= OnEndCameraRendering;
+        SceneManager.sceneLoaded -= OnSceneLoad;
+        SceneManager.sceneUnloaded -= OnSceneUnload;
     }
 
     void Start()
