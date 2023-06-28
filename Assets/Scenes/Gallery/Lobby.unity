@@ -4746,7 +4746,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6107771414439516600}
   m_Layer: 0
-  m_Name: Gallery Scene
+  m_Name: Gallery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5238,7 +5238,8 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 7227529886885810352}
+  - {fileID: 7848249433794219106}
+  - {fileID: 8584300376959809465}
   - {fileID: 4573906404055281420}
   - {fileID: 356576145789121294}
   m_Father: {fileID: 0}
@@ -5640,23 +5641,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!4 &7227529886885810352
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8904024118698903636}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7848249433794219106}
-  - {fileID: 8584300376959809465}
-  m_Father: {fileID: 6107771414439516600}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7305830506555632873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5844,7 +5828,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 7227529886885810352}
+  m_Father: {fileID: 6107771414439516600}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7948216357891192484
@@ -6103,7 +6087,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066016129226712953}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6114,7 +6098,7 @@ Transform:
   - {fileID: 641968438}
   - {fileID: 674692018}
   - {fileID: 663305054}
-  m_Father: {fileID: 7227529886885810352}
+  m_Father: {fileID: 6107771414439516600}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &8696046361321117235
@@ -6216,22 +6200,6 @@ GameObject:
   - component: {fileID: 5573565691872584761}
   m_Layer: 0
   m_Name: Audio
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &8904024118698903636
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7227529886885810352}
-  m_Layer: 0
-  m_Name: Gallery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,13 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.XR;
 
 public class TransitionManager : MonoBehaviour
 {
