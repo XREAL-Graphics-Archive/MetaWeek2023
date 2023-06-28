@@ -58,10 +58,11 @@ public class TransitionManager : MonoBehaviour
     private PortalBall selectedBall;
     private float timeElapsed = 0f;
     private int sceneLoads;
-    private List<GameObject> stencilMasks;
 
+    // event triggers when transition is invoked
     public static event Action sceneTransition;
 
+    // singleton
     private static TransitionManager _instance;
 
     public static TransitionManager Instance { get; private set; }
@@ -185,6 +186,7 @@ public class TransitionManager : MonoBehaviour
         return true;
     }
 
+    // lerp ball and unload previously loaded scene
     IEnumerator SwitchScene()
     {
         sceneLoads += 1;
