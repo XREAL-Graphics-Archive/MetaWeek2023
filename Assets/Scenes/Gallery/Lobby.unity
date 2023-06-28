@@ -236,6 +236,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8584300376959809465}
     m_Modifications:
+    - target: {fileID: -6930901661965677439, guid: 91f7152c23f4f584aacc7fcf635a181b,
+        type: 3}
+      propertyPath: sceneToLoad._sceneName
+      value: Room_Fog
+      objectReference: {fileID: 0}
+    - target: {fileID: -6930901661965677439, guid: 91f7152c23f4f584aacc7fcf635a181b,
+        type: 3}
+      propertyPath: sceneToLoad._sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 07f61def0839c0843abca0f0985f974c,
+        type: 3}
     - target: {fileID: 284842938291111200, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
       propertyPath: m_RootOrder
@@ -4705,7 +4716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6107771414439516600}
   m_Layer: 0
-  m_Name: GalleryScene
+  m_Name: Gallery Scene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
