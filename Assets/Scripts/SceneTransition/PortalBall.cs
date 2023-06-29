@@ -7,12 +7,18 @@ public class PortalBall : MonoBehaviour
 {
     public enum SceneConfiguration { Lobby, Room }
 
+    [Header("Scene Settings")]
     [SerializeField] private SceneConfiguration sceneType;
     public SceneConfiguration SceneType => sceneType;
     
     [SerializeField] private SceneField sceneToLoad;
     public SceneField Scene => sceneToLoad;
 
+    [Space] 
+    [Header("Render Settings")]
+    [SerializeField] private GameObject previewMesh;
+    public GameObject PreviewMesh => previewMesh;
+    
     [SerializeField] private Material globalMask;
     public Material GlobalMask => globalMask;
 

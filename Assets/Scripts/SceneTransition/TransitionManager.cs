@@ -142,6 +142,9 @@ public class TransitionManager : MonoBehaviour
                 if (ball != selectedBall)
                     ball.gameObject.SetActive(false);
         }
+        
+        // hide preview mesh
+        selectedBall.PreviewMesh.SetActive(false);
 
         // update scene type
         currentSceneType = selectedBall.SceneType;
