@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Pieces : MonoBehaviour
 {
     public static int UIHovering { get; set; }
 
     public VRDragAngleHandler dragAngleHandler;
+    public VRInputHandler inputHandler;
     public Piece[] pieces;
     public float radius;
     public float selectRadius;
@@ -20,18 +22,24 @@ public class Pieces : MonoBehaviour
 
     private void Start()
     {
+        selection = PlayerPrefs.GetInt("selection");
+
         var interval = 360 / pieces.Length;
-        pieces[0].onSelect?.Invoke();
+        var baseRot = initialRotation - interval * selection;
         for (var i = 0; i < pieces.Length; i++)
         {
+            if (i == selection) pieces[i].onSelect?.Invoke();
+            else pieces[i].onDeselect?.Invoke();
+
             var piece = pieces[i].transform;
             piece.localScale = new Vector3(pieceScale, pieceScale, pieceScale);
-            var yRot = Quaternion.Euler(0, (initialRotation + interval * i) % 360, 0);
+            var yRot = Quaternion.Euler(0, (baseRot + interval * i) % 360, 0);
 
-            var pos = yRot * new Vector3(i == 0 ? selectRadius : radius, i == 0 ? selectHeight : height, 0);
+            var pos = yRot * new Vector3(i == selection ? selectRadius : radius, i == selection ? selectHeight : height,
+                0);
             piece.position = pos;
             piece.rotation = yRot;
-            var scale = i == 0 ? selectPieceScale : pieceScale;
+            var scale = i == selection ? selectPieceScale : pieceScale;
             piece.localScale = new Vector3(scale, scale, scale);
         }
 
@@ -95,5 +103,15 @@ public class Pieces : MonoBehaviour
 
             first = false;
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        selection = 0;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt("selection", selection);
     }
 }

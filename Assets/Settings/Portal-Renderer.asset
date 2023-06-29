@@ -32,7 +32,7 @@ MonoBehaviour:
     enableWrite: 1
     stencilSettings:
       overrideStencilState: 1
-      stencilReference: 0
+      stencilReference: 1
       stencilCompareFunction: 3
       passOperation: 0
       failOperation: 0
@@ -123,6 +123,8 @@ MonoBehaviour:
     cameraMotionVector: {fileID: 4800000, guid: c56b7e0d4c7cb484e959caeeedae9bbf,
       type: 3}
     objectMotionVector: {fileID: 4800000, guid: 7b3ede40266cd49a395def176e1bc486,
+      type: 3}
+    dataDrivenLensFlare: {fileID: 4800000, guid: 6cda457ac28612740adb23da5d39ea92,
       type: 3}
   m_AssetVersion: 2
   m_OpaqueLayerMask:

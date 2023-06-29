@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1387887822254136897}
   - component: {fileID: 360979449925015597}
   - component: {fileID: -6930901661965677439}
+  - component: {fileID: 2624886089375839013}
   m_Layer: 0
   m_Name: Portal Ball
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 5795581011887566441}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1387887822254136897
 MeshFilter:
@@ -97,9 +98,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ffbcfbcabf68b4abcd4a978cb8704f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneType: 1
   sceneToLoad:
     _sceneAsset: {fileID: 0}
     _sceneName: 
+  globalMask: {fileID: 2100000, guid: 25209b492b2a9dc42a6544fbb39a2838, type: 2}
+  stencilMask: {fileID: 8844617332579872129}
+  skybox: {fileID: 2100000, guid: 7e5ebffdfe32ae349b4684e0d0d96c47, type: 2}
+--- !u!114 &2624886089375839013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166749100441372995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42bcc0f2c3434bdba442585687a18940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeselect:
+    m_PersistentCalls:
+      m_Calls: []
+  portal: {fileID: -6930901661965677439}
+  toPlayRenderers: []
 --- !u!1 &8844617332579872129
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +186,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e72c46550bb7ee41b5d751310fed3c1, type: 2}
+  - {fileID: 2100000, guid: e015436edf875664cad9f3eb97c70dc6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

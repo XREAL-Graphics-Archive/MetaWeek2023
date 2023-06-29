@@ -1,58 +1,68 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.XR;
 
 public class TransitionManager : MonoBehaviour
 {
     #region CAMERA EVENTS
-    void OnEnable()
-    {
-        RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
-        RenderPipelineManager.beginCameraRendering += OnEndCameraRendering;
-    }
 
-    private void OnDisable()
-    {
-        RenderPipelineManager.beginCameraRendering -= OnBeginCameraRendering;
-        RenderPipelineManager.beginCameraRendering -= OnEndCameraRendering;
-    }
-    
     void OnBeginCameraRendering(ScriptableRenderContext context, Camera cam)
     {
         if (playerCam != cam) return;
-        
+
         // TODO SWITCH SCENE LIGHTING SETUP
     }
 
     void OnEndCameraRendering(ScriptableRenderContext context, Camera cam)
     {
         if (playerCam != cam) return;
-        
+
         // TODO SWITCH SCENE LIGHTING SETUP
     }
+
     #endregion
 
-    [Header("XR Rig Data")]
-    [SerializeField] private GameObject playerRig;
+    #region SCENEMANAGER EVENTS
+
+    void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("[TransitionManager] Loaded " + scene.name);
+    }
+
+    void OnSceneUnload(Scene scene)
+    {
+        Debug.Log("[TransitionManager] Unloaded " + scene.name);
+    }
+
+    #endregion
+
+    [Header("XR Rig Data")] [SerializeField]
+    private GameObject playerRig;
+
     [SerializeField] private Camera playerCam;
     private UniversalAdditionalCameraData portalRenderer;
     private int currentRendererIndex = 0;
-    [Space]
-    
-    [Header("Transition Settings")]
+
+    [Space] [Header("Transition Settings")] [SerializeField]
+    private PortalBall.SceneConfiguration currentSceneType;
+
+    [SerializeField] private MeshRenderer globalMask;
     [SerializeField] private SceneField lobbyScene;
     [SerializeField] private float transitionDuration = 1f;
     private SceneField currentScene;
     private SceneField sceneToLoad;
     private PortalBall selectedBall;
     private float timeElapsed = 0f;
+    private int sceneLoads;
 
+    // event triggers when transition is invoked
+    public static event Action sceneTransition;
+
+    // singleton
     private static TransitionManager _instance;
 
     public static TransitionManager Instance { get; private set; }
@@ -64,18 +74,36 @@ public class TransitionManager : MonoBehaviour
             Destroy(this);
         else
             Instance = this;
-        
+
         // disable player rig before initial setup
         playerRig.SetActive(false);
 
         // load lobby scene
         currentScene = lobbyScene;
         SceneManager.LoadSceneAsync(lobbyScene.Name, LoadSceneMode.Additive);
-        
+
         // enable rig after loading lobby scene
         playerRig.SetActive(true);
-        
+
         DontDestroyOnLoad(gameObject);
+    }
+
+    void OnEnable()
+    {
+        RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
+        RenderPipelineManager.beginCameraRendering += OnEndCameraRendering;
+        SceneManager.sceneLoaded += OnSceneLoad;
+        SceneManager.sceneUnloaded += OnSceneUnload;
+        sceneTransition += OnSceneTransition;
+    }
+
+    private void OnDisable()
+    {
+        RenderPipelineManager.beginCameraRendering -= OnBeginCameraRendering;
+        RenderPipelineManager.beginCameraRendering -= OnEndCameraRendering;
+        SceneManager.sceneLoaded -= OnSceneLoad;
+        SceneManager.sceneUnloaded -= OnSceneUnload;
+        sceneTransition -= OnSceneTransition;
     }
 
     void Start()
@@ -95,6 +123,32 @@ public class TransitionManager : MonoBehaviour
         {
             InvokeTransition();
         }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            selectedBall = FindObjectOfType<PortalBall>();
+            SelectBall(selectedBall);
+        }
+    }
+
+    // scene transition event
+    void OnSceneTransition()
+    {
+        // disable any other stencil masks
+        if (currentSceneType == PortalBall.SceneConfiguration.Lobby)
+        {
+            var balls = FindObjectsOfType<PortalBall>();
+            foreach (PortalBall ball in balls)
+                if (ball != selectedBall)
+                    ball.gameObject.SetActive(false);
+        }
+
+        // update scene type
+        currentSceneType = selectedBall.SceneType;
+
+        // change skybox
+        RenderSettings.skybox = selectedBall.Skybox;
+        DynamicGI.UpdateEnvironment();
     }
 
     void SwitchRenderer()
@@ -102,43 +156,50 @@ public class TransitionManager : MonoBehaviour
         currentRendererIndex = (++currentRendererIndex) % 2;
         portalRenderer.SetRenderer(currentRendererIndex);
     }
-    
+
     void LoadSceneAdditive()
     {
         // only load additive if player cam renderer is set to portal renderer
         if (currentRendererIndex == 1)
-            SceneManager.LoadSceneAsync(sceneToLoad.Name, LoadSceneMode.Additive);
+        {
+            sceneLoads += 1;
+            SceneManager.LoadSceneAsync(sceneToLoad.Name, LoadSceneMode.Additive).completed += _ => sceneLoads -= 1;
+        }
     }
 
-    void UnloadSceneAdditive(SceneField scene)
+    bool UnloadSceneAdditive(SceneField scene)
     {
         // disable all objects to prevent rendering glitches
         Scene sceneToUnload = SceneManager.GetSceneByName(scene);
 
-        if (!sceneToUnload.IsValid()) return;
-        if (!sceneToUnload.isLoaded) return;
+        if (!sceneToUnload.IsValid()) return false;
+        if (!sceneToUnload.isLoaded) return false;
 
         foreach (GameObject rootObject in sceneToUnload.GetRootGameObjects())
         {
             rootObject.SetActive(false);
         }
-        
+
         // unload scene
-        SceneManager.UnloadSceneAsync(scene);
+        sceneLoads += 1;
+        SceneManager.UnloadSceneAsync(scene).completed += _ => sceneLoads -= 1;
+        return true;
     }
 
+    // lerp ball and unload previously loaded scene
     IEnumerator SwitchScene()
     {
+        sceneLoads += 1;
         timeElapsed = 0;
         Vector3 startPos = selectedBall.transform.position;
-        
+
         // lerp portal ball position
         while (timeElapsed < transitionDuration)
         {
             selectedBall.transform.position = Vector3.Lerp(
-                startPos, 
-                playerCam.transform.position, 
-                timeElapsed/transitionDuration
+                startPos,
+                playerCam.transform.position,
+                timeElapsed / transitionDuration
             );
             timeElapsed += Time.deltaTime;
             yield return null;
@@ -146,21 +207,29 @@ public class TransitionManager : MonoBehaviour
 
         // set portal ball position to player cam after lerp
         selectedBall.transform.position = playerCam.transform.position;
-        
+
         // unload current scene and switch renderer
-        UnloadSceneAdditive(currentScene);
+        while (UnloadSceneAdditive(currentScene)) yield return null;
         SwitchRenderer();
-        selectedBall.gameObject.SetActive(false);
-    } 
-    
+
+        // switch global mask
+        globalMask.sharedMaterial = selectedBall.GlobalMask;
+
+        if (sceneToLoad != null && sceneToLoad.Name.Length != 0)
+            currentScene = sceneToLoad;
+        sceneLoads -= 1;
+        yield return 0;
+    }
+
     /// <summary>
     /// Set currently selected portal ball.
     /// </summary>
-    /// <param name="sphere"></param>
-    public void SelectBall(PortalBall sphere)
+    /// <param name="ball"></param>
+    public void SelectBall(PortalBall ball)
     {
-        selectedBall = sphere;
-        sceneToLoad = sphere.Scene;
+        if (sceneLoads > 0) return;
+        selectedBall = ball;
+        sceneToLoad = ball.Scene;
     }
 
     /// <summary>
@@ -168,12 +237,15 @@ public class TransitionManager : MonoBehaviour
     /// </summary>
     public void InvokeTransition()
     {
+        if (sceneLoads > 0) return;
         if (selectedBall == null)
         {
             Debug.LogWarning("There is no Portal Ball selected. Cannot invoke transition.");
             return;
         }
-        
+
+        sceneTransition?.Invoke();
+
         SwitchRenderer();
         LoadSceneAdditive();
         StartCoroutine(SwitchScene());

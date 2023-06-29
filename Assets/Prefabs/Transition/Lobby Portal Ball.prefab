@@ -97,9 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ffbcfbcabf68b4abcd4a978cb8704f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneType: 0
   sceneToLoad:
-    _sceneAsset: {fileID: 102900000, guid: 2c31b4bae1f48394e82e85e3593cb0f2, type: 3}
-    _sceneName: Transition_Lobby
+    _sceneAsset: {fileID: 102900000, guid: b32e82b0fc0334732a0e79c0b19b4aaa, type: 3}
+    _sceneName: Lobby
+  globalMask: {fileID: 2100000, guid: 397c96bd955301448bc5f6eb61e16fc2, type: 2}
+  stencilMask: {fileID: 8844617332579872129}
+  skybox: {fileID: 2100000, guid: 7e5ebffdfe32ae349b4684e0d0d96c47, type: 2}
 --- !u!1 &8844617332579872129
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +165,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0e72c46550bb7ee41b5d751310fed3c1, type: 2}
+  - {fileID: 2100000, guid: e015436edf875664cad9f3eb97c70dc6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
