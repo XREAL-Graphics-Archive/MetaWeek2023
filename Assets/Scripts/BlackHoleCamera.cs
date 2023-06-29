@@ -58,7 +58,9 @@ public class BlackHoleCamera : MonoBehaviour
         var targetPosition = target.position;
         var thisToTarget = targetPosition - player.position;
 
-        blackHoleMaterial.SetVector(positionId, camera.WorldToViewportPoint(targetPosition));
+        var shaderPos = camera.WorldToViewportPoint(targetPosition);
+        if (shaderPos.z < 0) shaderPos = new Vector3(-10, -10);
+        blackHoleMaterial.SetVector(positionId, shaderPos);
         blackHoleMaterial.SetFloat(distanceId,
             (Vector3.Dot(thisToTarget, player.forward) > 0 ? 1 : -1) * thisToTarget.magnitude);
     }
