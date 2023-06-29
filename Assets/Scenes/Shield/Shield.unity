@@ -313,11 +313,11 @@ GameObject:
   - component: {fileID: 936996811}
   - component: {fileID: 936996810}
   - component: {fileID: 936996809}
-  - component: {fileID: 936996808}
   - component: {fileID: 936996807}
   - component: {fileID: 936996806}
   - component: {fileID: 936996815}
   - component: {fileID: 936996816}
+  - component: {fileID: 936996817}
   m_Layer: 7
   m_Name: Ball
   m_TagString: Untagged
@@ -342,7 +342,7 @@ MonoBehaviour:
   _maxSelectingInteractors: -1
   _data: {fileID: 0}
   _pointableElement: {fileID: 936996807}
-  _rigidbody: {fileID: 936996808}
+  _rigidbody: {fileID: 936996817}
   _physicsGrabbable: {fileID: 936996815}
   _resetGrabOnGrabsUpdated: 0
   _scoringModifier:
@@ -384,33 +384,6 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
---- !u!54 &936996808
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 936996805}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!135 &936996809
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -510,7 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _grabbable: {fileID: 936996807}
-  _rigidbody: {fileID: 936996808}
+  _rigidbody: {fileID: 936996817}
   _scaleMassWithSize: 1
 --- !u!114 &936996816
 MonoBehaviour:
@@ -524,10 +497,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35de45a57b745a4870053bbc04370bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 936996808}
+  rigidbody: {fileID: 936996817}
   respawnY: 0
-  respawnPosition: {x: 0.355, y: 2.64, z: 0.355}
-  respawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  respawnPosition: {x: 0.355, y: 2.6399999, z: 0.355}
+  respawnRotation: {x: -0, y: -0, z: -0, w: 1}
+--- !u!54 &936996817
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936996805}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1315331467
 PrefabInstance:
   m_ObjectHideFlags: 0
