@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6419349, g: 0.71228695, b: 0.86850756, a: 1}
+  m_IndirectSpecularColor: {r: 0.60883695, g: 0.70284736, b: 0.88218886, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1038,6 +1038,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6930901661965677439, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
+      propertyPath: skybox
+      value: 
+      objectReference: {fileID: 2100000, guid: 1aabe13c7abacaa4d8c7c2235418bf4d, type: 2}
+    - target: {fileID: -6930901661965677439, guid: 91f7152c23f4f584aacc7fcf635a181b,
+        type: 3}
       propertyPath: sceneToLoad._sceneName
       value: Liquid_JY
       objectReference: {fileID: 0}
@@ -1850,14 +1855,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6930901661965677439, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
+      propertyPath: skybox
+      value: 
+      objectReference: {fileID: 2100000, guid: 1aabe13c7abacaa4d8c7c2235418bf4d, type: 2}
+    - target: {fileID: -6930901661965677439, guid: 91f7152c23f4f584aacc7fcf635a181b,
+        type: 3}
       propertyPath: sceneToLoad._sceneName
-      value: Room_Fog
+      value: Island_HS
       objectReference: {fileID: 0}
     - target: {fileID: -6930901661965677439, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
       propertyPath: sceneToLoad._sceneAsset
       value: 
-      objectReference: {fileID: 102900000, guid: 07f61def0839c0843abca0f0985f974c,
+      objectReference: {fileID: 102900000, guid: 09e3159d3e4b2af458e2d8d11bb14a69,
         type: 3}
     - target: {fileID: 284842938291111200, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
@@ -2092,7 +2102,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1002481389}
+    - targetCorrespondingSourceObject: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1002481388}
   m_SourcePrefab: {fileID: 100100000, guid: 91f7152c23f4f584aacc7fcf635a181b, type: 3}
 --- !u!4 &1002481384 stripped
 Transform:
@@ -2106,7 +2124,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1002481383}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1002481387}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42bcc0f2c3434bdba442585687a18940, type: 3}
@@ -2118,6 +2136,60 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 1002481383}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1002481387 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1002481383}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1002481388
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002481387}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1002481389
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002481387}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1410451779
 GameObject:
   m_ObjectHideFlags: 0
