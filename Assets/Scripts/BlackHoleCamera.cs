@@ -5,8 +5,9 @@ public class BlackHoleCamera : MonoBehaviour
 {
     [Header("Settings")] [SerializeField] private Material blackHoleMaterial;
     [SerializeField] private Transform target;
-    [SerializeField] private Vector3 playerInitialPosition;
+    [SerializeField] private Vector3 targetOffset;
     [SerializeField] private Vector3 screenOffset;
+    [SerializeField] private Vector3 portalOffset;
     [SerializeField] private Quaternion screenRot;
     [SerializeField] private Transform screen;
     [SerializeField] private Transform lobbyPortal;
@@ -14,6 +15,7 @@ public class BlackHoleCamera : MonoBehaviour
     [SerializeField] private new Camera camera;
 
     private Transform player;
+    private Vector3 posCache;
 
     private static int positionId = Shader.PropertyToID("_Position");
     private static int distanceId = Shader.PropertyToID("_Distance");
@@ -28,8 +30,9 @@ public class BlackHoleCamera : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("OVRCameraRig").transform;
-        player.position = playerInitialPosition;
         var eye = GameObject.Find("CenterEyeAnchor").transform;
+        target.position = player.position + targetOffset;
+        lobbyPortal.position = player.position + portalOffset;
         transform.SetParent(eye);
         transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         screen.SetParent(eye);
@@ -46,7 +49,6 @@ public class BlackHoleCamera : MonoBehaviour
     private void Update()
     {
         if (lobbyPortal != null) return;
-        player.position = new Vector3(0, 1.75f, 0);
         Destroy(screen.gameObject);
         Destroy(gameObject);
     }

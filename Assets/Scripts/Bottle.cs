@@ -13,7 +13,8 @@ public class Bottle : MonoBehaviour
     private void Reset()
     {
         rigidbody = GetComponent<Rigidbody>();
-        rigidbody.Move(respawnPosition, respawnRotation);
+        respawnPosition = transform.position;
+        respawnRotation = transform.rotation;
     }
 
     private void FixedUpdate()

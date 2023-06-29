@@ -30,13 +30,11 @@ public class TransitionManager : MonoBehaviour
 
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        sceneLoads -= 1;
         Debug.Log("[TransitionManager] Loaded " + scene.name);
     }
 
     void OnSceneUnload(Scene scene)
     {
-        sceneLoads -= 1;
         Debug.Log("[TransitionManager] Unloaded " + scene.name);
     }
 
@@ -44,12 +42,14 @@ public class TransitionManager : MonoBehaviour
 
     [Header("XR Rig Data")] [SerializeField]
     private GameObject playerRig;
+
     [SerializeField] private Camera playerCam;
     private UniversalAdditionalCameraData portalRenderer;
     private int currentRendererIndex = 0;
 
-    [Space] [Header("Transition Settings")] 
-    [SerializeField] private PortalBall.SceneConfiguration currentSceneType;
+    [Space] [Header("Transition Settings")] [SerializeField]
+    private PortalBall.SceneConfiguration currentSceneType;
+
     [SerializeField] private MeshRenderer globalMask;
     [SerializeField] private SceneField lobbyScene;
     [SerializeField] private float transitionDuration = 1f;
@@ -138,14 +138,14 @@ public class TransitionManager : MonoBehaviour
         if (currentSceneType == PortalBall.SceneConfiguration.Lobby)
         {
             var balls = FindObjectsOfType<PortalBall>();
-            foreach(PortalBall ball in balls)
-                if(ball != selectedBall)
+            foreach (PortalBall ball in balls)
+                if (ball != selectedBall)
                     ball.gameObject.SetActive(false);
         }
 
         // update scene type
         currentSceneType = selectedBall.SceneType;
-        
+
         // change skybox
         RenderSettings.skybox = selectedBall.Skybox;
         DynamicGI.UpdateEnvironment();
@@ -163,7 +163,7 @@ public class TransitionManager : MonoBehaviour
         if (currentRendererIndex == 1)
         {
             sceneLoads += 1;
-            SceneManager.LoadSceneAsync(sceneToLoad.Name, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(sceneToLoad.Name, LoadSceneMode.Additive).completed += _ => sceneLoads -= 1;
         }
     }
 
@@ -182,7 +182,7 @@ public class TransitionManager : MonoBehaviour
 
         // unload scene
         sceneLoads += 1;
-        SceneManager.UnloadSceneAsync(scene);
+        SceneManager.UnloadSceneAsync(scene).completed += _ => sceneLoads -= 1;
         return true;
     }
 
@@ -230,7 +230,6 @@ public class TransitionManager : MonoBehaviour
         if (sceneLoads > 0) return;
         selectedBall = ball;
         sceneToLoad = ball.Scene;
-        // Debug.Log($"{currentScene.Name} {ball.Scene.Name}");
     }
 
     /// <summary>
@@ -246,7 +245,7 @@ public class TransitionManager : MonoBehaviour
         }
 
         sceneTransition?.Invoke();
-        
+
         SwitchRenderer();
         LoadSceneAdditive();
         StartCoroutine(SwitchScene());
