@@ -76,6 +76,6 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _FrenselColor: {r: 0.6259504, g: 0.8117647, b: 0.12941174, a: 0}
-    - _Liquidcolor: {r: 0.007843137, g: 0.6885222, b: 1, a: 0}
+    - _Liquidcolor: {r: 0.42145598, g: 1, b: 0, a: 0}
     - _SurfaceColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
