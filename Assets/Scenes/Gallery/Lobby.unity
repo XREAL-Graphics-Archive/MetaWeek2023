@@ -1937,7 +1937,7 @@ PrefabInstance:
     - target: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
       propertyPath: m_Name
-      value: Portal Ball (1)
+      value: Water Fall
       objectReference: {fileID: 0}
     - target: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
@@ -1947,12 +1947,12 @@ PrefabInstance:
     - target: {fileID: 2624886089375839013, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
       propertyPath: onSelect.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2624886089375839013, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
       propertyPath: onDeselect.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2624886089375839013, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
@@ -6880,7 +6880,7 @@ MonoBehaviour:
   radius: 7
   selectRadius: 0.75
   height: 4
-  selectHeight: 2.4
+  selectHeight: 2.5
   pieceScale: 2
   selectPieceScale: 0.75
   initialRotation: -90
