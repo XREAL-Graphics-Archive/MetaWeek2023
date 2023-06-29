@@ -59,10 +59,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Iinflate: 2.78
+    - _Iinflate: 2.69
     - _Inflate: 0
     - _Play: 1
-    - _QuadScale: 1.6
+    - _QuadScale: 1.19
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WindSpeed: 0.4
@@ -73,7 +73,7 @@ Material:
     - _windSpeed: 0.68
     - _windStrength: 0.066
     m_Colors:
-    - _LeafColor: {r: 0.65882355, g: 0.77254903, b: 0.35686275, a: 0}
+    - _LeafColor: {r: 0.6732132, g: 0.7830189, b: 0.3816601, a: 0}
     - _WindDir: {r: 0.7, g: 0, b: 0.7, a: 0}
     - _leafColor: {r: 0.6603662, g: 0.7735849, b: 0.35516787, a: 0}
     - _windDir: {r: 1, g: 0, b: 0, a: 0}
