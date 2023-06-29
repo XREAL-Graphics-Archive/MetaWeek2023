@@ -4317,6 +4317,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lobby Portal Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 1166749100441372995, guid: a794a980b5da13646b6e6b31eee1608e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

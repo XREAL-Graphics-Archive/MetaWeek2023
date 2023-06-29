@@ -340,7 +340,12 @@ PrefabInstance:
     - target: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2624886089375839013, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
@@ -686,7 +691,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 206103674}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trees
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -997,7 +1002,7 @@ PrefabInstance:
     - target: {fileID: 2076073980743734475, guid: 7207ce045a4eebb459d76be7c9f66fd8,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2076073980743734475, guid: 7207ce045a4eebb459d76be7c9f66fd8,
         type: 3}
@@ -1232,6 +1237,11 @@ PrefabInstance:
     - target: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2624886089375839013, guid: 91f7152c23f4f584aacc7fcf635a181b,
@@ -1486,6 +1496,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2624886089375839013, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
       propertyPath: onSelect.m_PersistentCalls.m_Calls.Array.size
@@ -1731,6 +1746,11 @@ PrefabInstance:
     - target: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2624886089375839013, guid: 91f7152c23f4f584aacc7fcf635a181b,
@@ -1983,6 +2003,11 @@ PrefabInstance:
     - target: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2624886089375839013, guid: 91f7152c23f4f584aacc7fcf635a181b,
@@ -2496,6 +2521,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1166749100441372995, guid: 91f7152c23f4f584aacc7fcf635a181b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2624886089375839013, guid: 91f7152c23f4f584aacc7fcf635a181b,
         type: 3}
       propertyPath: onSelect.m_PersistentCalls.m_Calls.Array.size
@@ -2813,7 +2843,7 @@ PrefabInstance:
     - target: {fileID: 2076073980743734475, guid: 7207ce045a4eebb459d76be7c9f66fd8,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2076073980743734475, guid: 7207ce045a4eebb459d76be7c9f66fd8,
         type: 3}
@@ -3968,7 +3998,7 @@ PrefabInstance:
     - target: {fileID: 2076073980743734475, guid: 7207ce045a4eebb459d76be7c9f66fd8,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2076073980743734475, guid: 7207ce045a4eebb459d76be7c9f66fd8,
         type: 3}

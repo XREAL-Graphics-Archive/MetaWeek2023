@@ -30,12 +30,30 @@ public class TransitionManager : MonoBehaviour
 
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("[TransitionManager] Loaded " + scene.name);
+        // Debug.Log("[TransitionManager] Loaded " + scene.name);
+        if (isInitialLoad)
+        {
+            if(String.Compare(scene.name, "Master", StringComparison.Ordinal) == 0) return;
+            Debug.Log("Loaded Lobby");
+            var balls = FindObjectsOfType<PortalBall>(true);
+            foreach (PortalBall ball in balls)
+                if (ball != selectedBall)
+                {
+                    Debug.Log("Set " + ball.name + " active");
+                    ball.gameObject.SetActive(true);
+                }
+            
+            isInitialLoad = false;
+        }
     }
 
     void OnSceneUnload(Scene scene)
     {
-        Debug.Log("[TransitionManager] Unloaded " + scene.name);
+        // Debug.Log("[TransitionManager] Unloaded " + scene.name);
+        var balls = FindObjectsOfType<PortalBall>(true);
+        foreach (PortalBall ball in balls)
+            if (ball != selectedBall)
+                ball.gameObject.SetActive(true);
     }
 
     #endregion
@@ -56,6 +74,7 @@ public class TransitionManager : MonoBehaviour
     private SceneField currentScene;
     private SceneField sceneToLoad;
     private PortalBall selectedBall;
+    private bool isInitialLoad = true;
     private float timeElapsed = 0f;
     private int sceneLoads;
 
@@ -112,23 +131,23 @@ public class TransitionManager : MonoBehaviour
         portalRenderer = playerCam.transform.GetComponent<UniversalAdditionalCameraData>();
 
         // (REMOVE AFTER SETUP) test portal ball
-        selectedBall = FindObjectOfType<PortalBall>();
-        SelectBall(selectedBall);
+        // selectedBall = FindObjectOfType<PortalBall>();
+        // SelectBall(selectedBall);
     }
 
     private void Update()
     {
         // (REMOVE AFTER SETUP) convenient method to test transition
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            InvokeTransition();
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            selectedBall = FindObjectOfType<PortalBall>();
-            SelectBall(selectedBall);
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     InvokeTransition();
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.A))
+        // {
+        //     selectedBall = FindObjectOfType<PortalBall>();
+        //     SelectBall(selectedBall);
+        // }
     }
 
     // scene transition event
@@ -210,6 +229,9 @@ public class TransitionManager : MonoBehaviour
 
         // set portal ball position to player cam after lerp
         selectedBall.transform.position = playerCam.transform.position;
+
+        // update scene type before unloading
+        currentSceneType = selectedBall.SceneType;
 
         // unload current scene and switch renderer
         while (UnloadSceneAdditive(currentScene)) yield return null;

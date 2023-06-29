@@ -559,7 +559,7 @@ PrefabInstance:
     - target: {fileID: 284842938291111200, guid: a794a980b5da13646b6e6b31eee1608e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 284842938291111200, guid: a794a980b5da13646b6e6b31eee1608e,
         type: 3}
@@ -569,7 +569,7 @@ PrefabInstance:
     - target: {fileID: 284842938291111200, guid: a794a980b5da13646b6e6b31eee1608e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 284842938291111200, guid: a794a980b5da13646b6e6b31eee1608e,
         type: 3}
@@ -610,6 +610,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lobby Portal Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166749100441372995, guid: a794a980b5da13646b6e6b31eee1608e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
