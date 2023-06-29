@@ -62,11 +62,11 @@ Material:
     - _Iinflate: 2.69
     - _Inflate: 0
     - _Play: 1
-    - _QuadScale: 1.19
+    - _QuadScale: 2.08
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WindSpeed: 0.4
-    - _WindStrength: 0.1
+    - _WindStrength: 0.05
     - _inflate: 2.78
     - _quadScale: 1.6
     - _scale: 1.26
